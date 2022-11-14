@@ -1,0 +1,48 @@
+files:
+- installer: N/A:Provide path to setup.exe
+- mgs2-v-s-fix: https://github.com/VFansss/mgs2-v-s-fix/releases/download/v1.8.1/MGS.V.s.Fix.v1.8.1.zip
+- 3rd-person-mod: https://github.com/oct0xor/mgs2sos/releases/download/v1.1.0/release.zip
+- texture-pack: https://www.nexusmods.com/metalgearsolid2substance/mods/1?tab=files&file_id=1
+game:
+  arch: win32
+  exe: drive_c/Program Files/KONAMI/MetalGearSolid2 Substance/bin/MGS2SSetup.exe
+  prefix: $GAMEDIR
+installer:
+- task:
+    arch: win32
+    name: create_prefix
+    prefix: $GAMEDIR
+- task:
+    app: directmusic
+    arch: win32
+    description: directmusic
+    name: winetricks
+    prefix: $GAMEDIR
+- task:
+    app: dsdmo
+    arch: win32
+    description: dsdmo
+    name: winetricks
+    prefix: $GAMEDIR
+- task:
+    app: quartz
+    arch: win32
+    description: quartz
+    name: winetricks
+    prefix: $GAMEDIR
+- task:
+    arch: win32
+    description: null
+    executable: installer
+    name: wineexec
+    prefix: $GAMEDIR
+- extract:
+    description: moving
+    dst: $GAMEDIR/drive_c/Program Files/KONAMI/MetalGearSolid2 Substance/bin/
+    file: mgs2-v-s-fix
+system:
+  env:
+    SOMEENV: true
+wine:
+  Desktop: false
+  esync: true
